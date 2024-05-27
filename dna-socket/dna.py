@@ -3,10 +3,8 @@ A simple animation of a DNA double-helix. Press Ctrl-C to stop.
 Inspired by matoken https://asciinema.org/a/155441
 This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: short, artistic, scrolling, science"""
-global node
 def dna(node):
     import random, sys, time
-    node = node
     PAUSE = 0.15  # (!) Try changing this to 0.5 or 0.0.
 
     # These are the individual rows of the DNA animation:
