@@ -6,7 +6,7 @@ def run_server():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     server_ip = "127.0.0.1"
-    port = 8000
+    port = 8200
 
     # bind the socket to a specific address and port
     server.bind((server_ip, port))
