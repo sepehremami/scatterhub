@@ -5,7 +5,6 @@ This code is available at https://nostarch.com/big-book-small-python-programming
 Tags: short, artistic, scrolling, science"""
 def dna(node):
     import random, sys, time
-
     PAUSE = 0.15  # (!) Try changing this to 0.5 or 0.0.
 
     # These are the individual rows of the DNA animation:
@@ -48,8 +47,7 @@ def dna(node):
                 print(ROWS[rowIndex])
                 continue
 
-
-            leftNucleotide, rightNucleotide = node
+            leftNucleotide, rightNucleotide = node.get_value()
 
             # Print the row.
             print(ROWS[rowIndex].format(leftNucleotide, rightNucleotide))

@@ -1,12 +1,15 @@
 import socket
+from dna_service import DynamicVariable, function_with_dynamic_var, stop_thread
 
-from doctest_test import dna
+
+from dna import dna
+
 def run_server():
     # create a socket object
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
     server_ip = "127.0.0.1"
-    port = 8000
+    port = 8200
 
     # bind the socket to a specific address and port
     server.bind((server_ip, port))
@@ -17,12 +20,14 @@ def run_server():
     # accept incoming connections
     client_socket, client_address = server.accept()
     print(f"Accepted connection from {client_address[0]}:{client_address[1]}")
-
+    dynamic_var = DynamicVariable(("$","$"))
+    t = function_with_dynamic_var(dna, dynamic_var)
     # receive data from the client
     while True:
         request = client_socket.recv(1024)
         request = request.decode("utf-8") # convert bytes to string
-        dna((request, request))
+        
+        dynamic_var.set_value((request,request))
         # if we receive "close" from the client, then we break
         # out of the loop and close the conneciton
         if request.lower() == "close":
@@ -31,7 +36,7 @@ def run_server():
             client_socket.send("closed".encode("utf-8"))
             break
 
-        print(f"Received: {request}")
+        # print(f"Received: {request}")
 
         response = "accepted".encode("utf-8") # convert string to bytes
         # convert and send accept response to the client
@@ -39,6 +44,7 @@ def run_server():
 
     # close connection socket with the client
     client_socket.close()
+    stop_thread(t)
     print("Connection to client closed")
     # close server socket
     server.close()
