@@ -25,15 +25,15 @@ def stop_thread(thread):
     thread.stop_thread = True
     thread.join()
 
-dynamic_var = DynamicVariable(('aa','aa'))
+# dynamic_var = DynamicVariable(('aa','aa'))
 
-t = function_with_dynamic_var(dna, dynamic_var)
+# t = function_with_dynamic_var(dna, dynamic_var)
 
 
-time.sleep(3)
-dynamic_var.set_value(("ccc", "ccc"))
+# time.sleep(3)
+# dynamic_var.set_value(("ccc", "ccc"))
 
-time.sleep(3)
-dynamic_var.set_value(("vvv","vvv"))
+# time.sleep(3)
+# dynamic_var.set_value(("vvv","vvv"))
 
-stop_thread(t)
+# stop_thread(t)
